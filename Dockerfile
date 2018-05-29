@@ -28,7 +28,7 @@ RUN \
   apt-get update && \
   echo "mysql-server mysql-server/root_password password root" | debconf-set-selections && \
   echo "mysql-server mysql-server/root_password_again password root" | debconf-set-selections && \
-  apt-get install -y --allow-unauthenticated --no-install-recommends \
+  apt-get install -y --allow-unauthenticated \
     mysql-server-5.6 \
     mysql-client-5.6 \
     && \
@@ -37,7 +37,7 @@ RUN \
 # Install PHP 7.1
 RUN \
   apt-get update && \
-  apt-get install -y --allow-downgrades --no-install-recommends \
+  apt-get install -y --allow-downgrades \
     git \
     zip \
     php7.1-mysqlnd \
