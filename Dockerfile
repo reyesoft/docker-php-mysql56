@@ -7,14 +7,14 @@ ENV LANGUAGE en_US:en
 # Base
 RUN \
  apt-get update && \
- apt-get -y --no-install-recommends install locales apt-utils wget gnupg curl apt-transport-https lsb-release ca-certificates && \
+ apt-get install -y --no-install-recommends locales apt-utils wget gnupg curl apt-transport-https lsb-release ca-certificates && \
  echo "en_US.UTF-8 UTF-8" >> /etc/locale.gen && \
  locale-gen en_US.UTF-8 && \
  /usr/sbin/update-locale LANG=en_US.UTF-8 && \
  update-ca-certificates && \
  apt-get autoclean && apt-get clean && apt-get autoremove
 
-# Add the PHP 7 repo
+# Add more repo sources
 RUN \
   echo "deb http://packages.dotdeb.org stretch all" >> /etc/apt/sources.list && \
   echo "deb-src http://packages.dotdeb.org stretch all" >> /etc/apt/sources.list && \
@@ -28,14 +28,30 @@ RUN \
   apt-get update && \
   echo "mysql-server mysql-server/root_password password root" | debconf-set-selections && \
   echo "mysql-server mysql-server/root_password_again password root" | debconf-set-selections && \
-  apt-get install -y --force-yes mysql-server-5.6 mysql-client-5.6 && \
+  apt-get install -y --allow-unauthenticated --no-install-recommends \
+    mysql-server-5.6 \
+    mysql-client-5.6 \
+    && \
   apt-get autoclean && apt-get clean && apt-get autoremove
 
-# Install PHP
+# Install PHP 7.1
 RUN \
   apt-get update && \
-  apt-get install -y --force-yes git zip && \
-  apt-get install -y --force-yes php7.1-mysqlnd php7.1-cli php7.1-sqlite php7.1-mbstring php7.1-mcrypt php7.1-curl php7.1-intl php7.1-gd php7.1-xdebug php7.1-zip php7.1-xml php7.1-soap php7.1-sqlite3 && \
+  apt-get install -y --allow-downgrades --no-install-recommends \
+    git \
+    zip \
+    php7.1-mysqlnd \
+    php7.1-cli \
+    php7.1-mbstring \
+    php7.1-mcrypt \
+    php7.1-curl \
+    php7.1-intl \
+    php7.1-gd \
+    php7.1-zip \
+    php7.1-xml \
+    php7.1-soap \
+    php7.1-sqlite3 \
+    && \
   apt-get autoclean && apt-get clean && apt-get autoremove
 
 # Install composer
