@@ -42,6 +42,7 @@ RUN \
     zip \
     php7.1-mysqlnd \
     php7.1-cli \
+    php7.1-phpdbg \
     php7.1-mbstring \
     php7.1-mcrypt \
     php7.1-curl \
