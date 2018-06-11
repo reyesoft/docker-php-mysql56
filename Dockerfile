@@ -40,6 +40,8 @@ RUN \
   apt-get install -y --allow-downgrades \
     git \
     zip \
+    fonts-texgyre \
+    wkhtmltopdf \
     php7.1-mysqlnd \
     php7.1-cli \
     php7.1-phpdbg \
