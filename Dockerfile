@@ -40,8 +40,8 @@ RUN \
   apt-get install -y --allow-downgrades \
     git \
     zip \
+    xz-utils \
     fonts-texgyre \
-    wkhtmltopdf \
     php7.1-mysqlnd \
     php7.1-cli \
     php7.1-phpdbg \
@@ -56,6 +56,12 @@ RUN \
     php7.1-sqlite3 \
     && \
   apt-get autoclean && apt-get clean && apt-get autoremove
+
+#downgrade wkhtmltox-0.12.3 because is required for snappy
+RUN \
+  wget https://github.com/wkhtmltopdf/wkhtmltopdf/releases/download/0.12.3/wkhtmltox-0.12.3_linux-generic-amd64.tar.xz && \
+  tar xvf wkhtmltox-0.12.3_linux-generic-amd64.tar.xz && \
+  echo "wkhtmltox/bin/wkhtmltopdf" >> /usr/local/bin/wkhtmltopdf
 
 # Install composer
 RUN curl -sS https://getcomposer.org/installer | php -- --filename=composer --install-dir=/usr/bin
