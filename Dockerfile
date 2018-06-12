@@ -40,7 +40,6 @@ RUN \
   apt-get install -y --allow-downgrades \
     git \
     zip \
-    xz-utils \
     fonts-texgyre \
     php7.1-mysqlnd \
     php7.1-cli \
@@ -57,11 +56,18 @@ RUN \
     && \
   apt-get autoclean && apt-get clean && apt-get autoremove
 
-#downgrade wkhtmltox-0.12.3 because is required for snappy
+# Install wkhtmltox-0.12.3 because this library has a bug on oficial repo
+# Required by by snappy (pdf)
 RUN \
-  wget https://github.com/wkhtmltopdf/wkhtmltopdf/releases/download/0.12.3/wkhtmltox-0.12.3_linux-generic-amd64.tar.xz && \
-  tar xvf wkhtmltox-0.12.3_linux-generic-amd64.tar.xz && \
-  echo "wkhtmltox/bin/wkhtmltopdf" >> /usr/local/bin/wkhtmltopdf
+  apt-get install -y --no-install-recommends \
+    xz-utils \
+    libfontconfig1 \
+    libxrender1 \
+    && \
+  wget -nv https://github.com/wkhtmltopdf/wkhtmltopdf/releases/download/0.12.4/wkhtmltox-0.12.4_linux-generic-amd64.tar.xz && \
+  tar xvf wkhtmltox-0.12.4_linux-generic-amd64.tar.xz && \
+  mv wkhtmltox/bin/wkhtmlto* /usr/bin/ && \
+  ln -nfs /usr/bin/wkhtmltopdf /usr/local/bin/wkhtmltopdf
 
 # Install composer
 RUN curl -sS https://getcomposer.org/installer | php -- --filename=composer --install-dir=/usr/bin
@@ -71,3 +77,4 @@ RUN curl https://phar.phpunit.de/phpunit.phar > phpunit.phar && chmod +x phpunit
 
 # Install Prestissimo
 RUN composer global require hirak/prestissimo
+
