@@ -59,9 +59,9 @@ RUN \
 
 #downgrade wkhtmltox-0.12.3 because is required for snappy
 RUN \
-wget https://github.com/wkhtmltopdf/wkhtmltopdf/releases/download/0.12.3/wkhtmltox-0.12.3_linux-generic-amd64.tar.xz &&\
-  tar xvf wkhtmltox-0.12.3_linux-generic-amd64.tar.xz &&\
-echo "wkhtmltox/bin/wkhtmltopdf" >> /usr/local/bin/wkhtmltopdf
+  wget https://github.com/wkhtmltopdf/wkhtmltopdf/releases/download/0.12.3/wkhtmltox-0.12.3_linux-generic-amd64.tar.xz && \
+  tar xvf wkhtmltox-0.12.3_linux-generic-amd64.tar.xz && \
+  echo "wkhtmltox/bin/wkhtmltopdf" >> /usr/local/bin/wkhtmltopdf
 
 # Install composer
 RUN curl -sS https://getcomposer.org/installer | php -- --filename=composer --install-dir=/usr/bin
