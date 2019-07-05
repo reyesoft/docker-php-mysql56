@@ -34,25 +34,24 @@ RUN \
     && \
   apt-get autoclean && apt-get clean && apt-get autoremove
 
-# Install PHP 7.1
+# Install PHP 7.2
 RUN \
   apt-get update && \
   apt-get install -y --allow-downgrades \
     git \
     zip \
     fonts-texgyre \
-    php7.1-mysqlnd \
-    php7.1-cli \
-    php7.1-phpdbg \
-    php7.1-mbstring \
-    php7.1-mcrypt \
-    php7.1-curl \
-    php7.1-intl \
-    php7.1-gd \
-    php7.1-zip \
-    php7.1-xml \
-    php7.1-soap \
-    php7.1-sqlite3 \
+    php7.2-mysqlnd \
+    php7.2-cli \
+    php7.2-phpdbg \
+    php7.2-mbstring \
+    php7.2-curl \
+    php7.2-intl \
+    php7.2-gd \
+    php7.2-zip \
+    php7.2-xml \
+    php7.2-soap \
+    php7.2-sqlite3 \
     && \
   apt-get autoclean && apt-get clean && apt-get autoremove
 
