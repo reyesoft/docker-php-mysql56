@@ -3,7 +3,7 @@
 Supported versions of PHP:
 - 7.1
 - 7.2
--   7.3
+- 7.3
 
 ## Build and test on local env
 
