@@ -34,31 +34,31 @@ RUN \
     && \
   apt-get autoclean && apt-get clean && apt-get autoremove
 
-# Install PHP 7.2
+# Install PHP 7.3
 RUN \
   apt-get update && \
   apt-get install -y --allow-downgrades \
     git \
     zip \
     fonts-texgyre \
-    php7.2-mysqlnd \
-    php7.2-cli \
-    php7.2-phpdbg \
-    php7.2-mbstring \
-    php7.2-curl \
-    php7.2-intl \
-    php7.2-gd \
-    php7.2-zip \
-    php7.2-xml \
-    php7.2-soap \
-    php7.2-sqlite3 \
+    php7.3-mysqlnd \
+    php7.3-cli \
+    php7.3-phpdbg \
+    php7.3-mbstring \
+    php7.3-curl \
+    php7.3-intl \
+    php7.3-gd \
+    php7.3-zip \
+    php7.3-xml \
+    php7.3-soap \
+    php7.3-sqlite3 \
     && \
   apt-get autoclean && apt-get clean && apt-get autoremove
 
 # Install mcrypt dependecie
 Run \
     apt-get install -y --no-install-recommends \
-    php7.2-dev \
+    php7.3-dev \
     libmcrypt-dev \
     php-pear \
     make \
