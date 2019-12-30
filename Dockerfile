@@ -52,6 +52,7 @@ RUN \
     php7.3-xml \
     php7.3-soap \
     php7.3-sqlite3 \
+    php7.3-bcmath \
     && \
   apt-get autoclean && apt-get clean && apt-get autoremove
 
